@@ -1,12 +1,25 @@
-FROM nginx:stable-alpine
+# from the tiny alpines base image
+FROM alpine
 
-# delete the default config files 
-RUN rm /etc/nginx/conf.d/default.conf
+MAINTAINER sam
 
-# copy the content to the html and 
-COPY content /usr/share/nginx/html
-COPY conf /etc/nginx
+# install nginx, create user to run nginx, backup orig nginx.conf
+RUN apk update && apk add nginx \
+  && adduser -D -u 1000 -g 'www' www \
+  && mkdir /www \
+  && chown -R www:www /var/lib/nginx \
+  && chown -R www:www /www \
+  && mv /etc/nginx/nginx.conf /etc/nginx/nginx.conf.orig \
+  && rm -f /etc/nginx/nginx.conf
 
-# mount the contents as volumes
-VOLUME /usr/share/nginx/html
-VOLUME /etc/nginx
+# copy a configuration file from the current directory
+ADD conf/nginx.conf /etc/nginx/
+
+# switch to www [user]
+USER www
+
+# expose a port to the world
+EXPOSE 80
+
+# start nginx
+CMD rc-service nginx start

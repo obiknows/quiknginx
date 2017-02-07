@@ -3,7 +3,16 @@ a fast ass static server container. put it online really quick, edit really easy
 
 can serve a file full of html and static files, *compiled css & js*.
 
-# how to build
+can be used **domain-wide** to describe, each part
+
+*.domain.com
+  - www
+  - api
+  - blog
+  - someapp
+  - gitstuff
+  - etc...
+
 
 # how to use
 
