@@ -1,7 +1,7 @@
 FROM nginx:stable-alpine
 
-# delete the 
-RUN rm /etc/nginx/conf.d/default.conf && rm /etc/nginx/conf.d/examplessl.conf
+# delete the default config files 
+RUN rm /etc/nginx/conf.d/default.conf
 
 # copy the content to the html and 
 COPY content /usr/share/nginx/html

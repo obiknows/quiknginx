@@ -9,8 +9,8 @@ can serve a file full of html and static files, *compiled css & js*.
 
 1. from this directory, build it 
 
-`docker build -t [image_name] .`
+`docker build -t quiknginx .`
 
 2. then run it (make sure to pick names & ports)
 
-`docker run -d -port <outside_port>:80 --name [container_name] [image_name]`
+`docker run -d -p <outside_port>:80 --name [container_name] [image_name]`
